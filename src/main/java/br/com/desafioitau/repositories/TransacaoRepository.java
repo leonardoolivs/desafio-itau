@@ -1,4 +1,4 @@
-package br.com.desafioitau;
+package br.com.desafioitau.repositories;
 
 import br.com.desafioitau.entities.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
