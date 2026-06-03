@@ -2,6 +2,8 @@ package br.com.desafioitau.controllers;
 
 import br.com.desafioitau.entities.Transacao;
 import br.com.desafioitau.repositories.TransacaoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -13,12 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/transacao")
 @RequiredArgsConstructor
+@Tag(name = "Transações", description = "API de Transações")
 public class TransacaoController {
 
     private final Logger logger = LoggerFactory.getLogger(TransacaoController.class);
     private final TransacaoRepository repository;
 
     @PostMapping
+    @Operation(summary = "Cadastra uma transação")
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid Transacao transacao){
         logger.info("Transação iniciada");
         transacao = repository.save(transacao);
@@ -28,6 +32,7 @@ public class TransacaoController {
     }
 
     @DeleteMapping
+    @Operation(summary = "Deleta todas as transações")
     public void deletarTudo(){
         repository.deleteAll();
     }

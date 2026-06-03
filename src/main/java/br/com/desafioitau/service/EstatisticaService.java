@@ -14,15 +14,17 @@ import java.util.DoubleSummaryStatistics;
 @RequiredArgsConstructor
 public class EstatisticaService {
 
-    private final Integer TEMPO_ESTATISTICA = 60;
-
     private final EstatisticaMapper mapper;
     private final TransacaoRepository repository;
 
     @Transactional(readOnly = true)
-    public Estatistica obterEstatisticas(){
+    public Estatistica obterEstatisticas(Long tempoEstatisticas) {
 
-        LocalDateTime segundos = LocalDateTime.now().minusSeconds(TEMPO_ESTATISTICA);
+        if (tempoEstatisticas == null) {
+            tempoEstatisticas = 60L;
+        }
+        
+        LocalDateTime segundos = LocalDateTime.now().minusSeconds(tempoEstatisticas);
 
         DoubleSummaryStatistics stats = repository.findAll()
                 .stream()
