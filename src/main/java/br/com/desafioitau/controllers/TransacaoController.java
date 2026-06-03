@@ -2,6 +2,7 @@ package br.com.desafioitau.controllers;
 
 import br.com.desafioitau.entities.Transacao;
 import br.com.desafioitau.repositories.TransacaoRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class TransacaoController {
     private final TransacaoRepository repository;
 
     @PostMapping
-    public ResponseEntity<Void> cadastrar(@RequestBody Transacao transacao){
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid Transacao transacao){
         transacao = repository.save(transacao);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
