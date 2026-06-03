@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Estatistica {
 
-    private Integer count;
+    private Long count;
     private Double sum;
     private Double avg;
     private Double min;
     private Double max;
-    
+
 }
